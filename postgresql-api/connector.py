@@ -3,6 +3,8 @@ import psycopg2
 import os
 import subprocess
 import time
+from pyspark.sql import SparkSession
+from sqlalchemy import create_engine
 
 class PostgreSQL:
     def __init__(self, connection_details, vpn_file_path, path_to_jars=None):
