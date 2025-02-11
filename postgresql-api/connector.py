@@ -7,7 +7,7 @@ from pyspark.sql import SparkSession
 from sqlalchemy import create_engine
 
 class PostgreSQL:
-    def __init__(self, connection_details, vpn_file_path, path_to_jars=None):
+    def __init__(self, connection_details, vpn_file_path=None, path_to_jars=None):
         '''
         Initializes the PostgreSQL class.
 
