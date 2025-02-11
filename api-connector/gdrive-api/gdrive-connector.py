@@ -7,7 +7,7 @@ from google.oauth2.service_account import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 
-class GoogleServiceUtilities:
+class GoogleDrive:
     def __init__(self, google_credentials_path, google_token_path):
         '''
         Initializes the GoogleServiceUtilities class with the provided credentials paths.
