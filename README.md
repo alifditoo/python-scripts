@@ -1,2 +1,2 @@
 # python-scripts
-A collection of useful Python scripts for data analysis, automation, and various tasks. Continuously updated with new functionalities and improvements
+A versatile Python scripts repository covering automation, data processing, API interaction, and more. Ideal for developers, data analysts, and anyone looking to streamline tasks with Python.
