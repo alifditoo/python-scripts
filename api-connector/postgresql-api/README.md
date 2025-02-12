@@ -19,6 +19,34 @@ The `postgresql-connector.py` script efficiently retrieves data from the databas
 ### 5. VPN Support
 This script also supports the use of VPN with the Open VPN Connect platform, providing an additional layer of security when accessing databases from different locations.
 
+## How to Use
+1. **Install Dependencies**: Ensure you have the `psycopg2` library installed. You can install it using pip:
+   ```bash
+   pip install psycopg2
+   ```
+
+2. **Set Up Connection Details**: Prepare a dictionary containing your PostgreSQL connection details, including 'host', 'port', 'database', 'user', and 'password'.
+
+3. **Create an Instance**: Instantiate the `PostgreSQL` class with your connection details:
+   ```python
+   connection_details = {
+       'host': 'your_host',
+       'port': 'your_port',
+       'database': 'your_database',
+       'user': 'your_user',
+       'password': 'your_password'
+   }
+   postgres = PostgreSQL(connection_details)
+   ```
+
+4. **Fetch Data**: Use the `fetch_data_from_postgres` method to execute SQL queries and retrieve data:
+   ```python
+   sql_query = "SELECT * FROM your_table"
+   data = postgres.fetch_data_from_postgres(sql_query)
+   ```
+
+5. **Handle Errors**: Be prepared to handle exceptions that may arise during database interactions.
+
 ## Conclusion
 In summary, `postgresql-connector.py` is an invaluable tool for data scientists and engineers looking to integrate PostgreSQL database functionalities into their data analysis workflows. It enhances the ability to manage and analyze data effectively, making it a key resource for any data-driven project.
 
