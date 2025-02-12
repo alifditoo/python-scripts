@@ -19,3 +19,6 @@ This folder contains scripts and modules used for data mining, specifically for 
 
 ## Contribution
 Contributions are welcome! Please **create a pull request** or **open an issue** if you have suggestions or improvements.
+
+## License
+This project is licensed under the MIT License.
