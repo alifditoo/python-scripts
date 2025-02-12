@@ -186,6 +186,22 @@ def get_product_link(query, page_start=0, page_end=1):
     df_result = df_result.drop_duplicates(subset=['Link Produk'], keep='first').reset_index(drop=True)
     return df_result
 
+def save_to_file(dataframe, file_name, file_format='csv'):
+    '''
+    Save the DataFrame to a file in the specified format.
+    
+    Parameters:
+    dataframe (pd.DataFrame): The DataFrame to save.
+    file_name (str): The name of the file to save the data to (without extension).
+    file_format (str): The format to save the file in ('csv' or 'xlsx'). Default is 'csv'.
+    '''
+    if file_format == 'csv':
+        dataframe.to_csv(f"{file_name}.csv", index=False)
+    elif file_format == 'xlsx':
+        dataframe.to_excel(f"{file_name}.xlsx", index=False)
+    else:
+        raise ValueError("Unknown file format. Choose 'csv' or 'xlsx'.")
+
 list_of_products = [''] #<-- Input Product Name Here
 
 final_result = []
@@ -267,20 +283,5 @@ for product in list_of_products:
 
 df_productdetails = pd.DataFrame(final_result)
 df_productdetails.replace('', None, inplace=True)
-
-def save_to_file(dataframe, file_name, file_format='csv'):
-    '''
-    Save the DataFrame to a file in the specified format.
-    
-    Parameters:
-    dataframe (pd.DataFrame): The DataFrame to save.
-    file_name (str): The name of the file to save the data to (without extension).
-    file_format (str): The format to save the file in ('csv' or 'xlsx'). Default is 'csv'.
-    '''
-    if file_format == 'csv':
-        dataframe.to_csv(f"{file_name}.csv", index=False)
-    elif file_format == 'xlsx':
-        dataframe.to_excel(f"{file_name}.xlsx", index=False)
-    else:
-        raise ValueError("Unknown file format. Choose 'csv' or 'xlsx'.")
+save_to_file(df_productdetails, 'product_details', file_format='xlsx')
 

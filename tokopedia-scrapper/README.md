@@ -13,9 +13,19 @@ This folder contains scripts and modules used for data mining, specifically for 
 
 ## How to Use
 1. Make sure you have **Python** installed on your system.
-2. **Clone this repository**.
-3. Run the script corresponding to the product category you want to retrieve data for.
-4. The data will be **saved in the specified file**.
+2. Install the required packages by running the following command:
+   ```
+   pip install pandas selenium beautifulsoup4 requests
+   ```
+3. Modify the `list_of_products` variable in the `main_pull.py` script to include the product names you want to search for. For example:
+   ```python
+   list_of_products = ['product1', 'product2']
+   ```
+4. Execute the script by running:
+   ```
+   python main_pull.py
+   ```
+5. The data will be saved in the specified file format, such as CSV or XLSX, as defined by modifying the `save_to_file` function, which only supports CSV and XLSX formats.
 
 ## Contribution
 Contributions are welcome! Please **create a pull request** or **open an issue** if you have suggestions or improvements.
