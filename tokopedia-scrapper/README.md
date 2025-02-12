@@ -1,4 +1,4 @@
-# tokopedia-scraper
+# Tokopedia Scrapper
 This folder contains scripts and modules used for data mining, specifically for retrieving detailed data based on product details from Tokopedia. The scripts in this folder are designed to facilitate data extraction from Tokopedia. By using this folder, users can quickly integrate Tokopedia functionality into their Python projects, thereby enhancing efficiency and productivity in application development.
 
 ## Features
