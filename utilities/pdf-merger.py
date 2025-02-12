@@ -1,5 +1,5 @@
 import pypdf
-import optparse
+import os
 
 def find_all_files(filename):
     '''
