@@ -51,10 +51,6 @@ Performs a robust multi-step clustering process:
 - Merges them with nearby larger clusters if within `max_merge_distance_km`.
 - Handles special cases for isolated outlets.
 
-#### 4. Cluster Renumbering
-- Reassigns cluster IDs sequentially (e.g., 0, 1, 2, …).
-- Updates cluster centers accordingly.
-
 ---
 
 ## 📤 Output
@@ -122,7 +118,3 @@ This module also uses:
 - `math` – for Haversine distance calculation  
 - `scipy.spatial.distance`  
 - `sklearn.cluster.AgglomerativeClustering`
-
----
-
-> “In clustering we trust. Everything else — just noise on the map.”
