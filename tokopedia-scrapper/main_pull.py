@@ -44,10 +44,22 @@ def get_product_link_from_page(soup, result_elements):
         for element in soup:
             sub_elements = element.find_all("div", class_="css-5wh65g")
             for child_element in sub_elements:
-                child_element = child_element.find("a", class_="oQ94Awb6LlTiGByQZo8Lyw== IM26HEnTb-krJayD-R0OHw==")
+                child_element = child_element.find("a")
                 if child_element is not None:
                     product_link = child_element.get("href")
-                    product_name = child_element.find("span", class_="_0T8-iGxMpV6NEsYEhwkqEg==")
+                    spans = child_element.find_all("span")
+                    product_name = None
+                    for span in spans:
+                        if span.text and span.text.strip() and len(span.text.strip()) >= 8:
+                            product_name = span
+                            break
+
+                    if product_name is None:
+                        longest_text = ""
+                        for span in spans:
+                            if span.text and span.text.strip() and len(span.text.strip()) > len(longest_text):
+                                longest_text = span.text.strip()
+                                product_name = span
                     result_elements.append((product_name.text, product_link))
     else:
         pass
@@ -61,6 +73,21 @@ def get_page_source(website_link):
         driver.get(website_link)
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "div#zeus-root")))
         time.sleep(1)
+        
+        # Cek apakah ada elemen dengan class css-dfpqc0
+        try:
+            popup_element = WebDriverWait(driver, 3).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, ".css-dfpqc0"))
+            )
+            # Jika ada, cari dan klik tombol dengan class css-11hzwo5
+            if popup_element:
+                close_button = WebDriverWait(driver, 3).until(
+                    EC.element_to_be_clickable((By.CSS_SELECTOR, ".css-11hzwo5"))
+                )
+                close_button.click()
+                time.sleep(0.5)
+        except:
+            pass  # Jika tidak ada popup, lanjutkan proses
         
         page_source = driver.page_source
         soup = BeautifulSoup(page_source, 'html.parser')
@@ -259,12 +286,12 @@ for product in list_of_products:
                 description = ''
             #-- Shop Name --#
             try:
-                shop_name = soup.find('h2', class_='css-1wdzqxj-unf-heading e1qvo2ff2').text.strip()
+                shop_name = soup.find('h2', class_='css-1ceqk3d-unf-heading e1qvo2ff2').text.strip()
             except AttributeError:
                 shop_name = ''
             #-- Store Location --#
             try:
-                store_location = soup.find('h2', class_='css-1pd07ge-unf-heading e1qvo2ff2').text.replace('Dikirim dari', '').strip()
+                store_location = soup.find('h2', class_='css-793nib-unf-heading e1qvo2ff2').text.replace('Dikirim dari', '').strip()
             except AttributeError:
                 store_location = ''
             data_found['keyword'] = product
@@ -284,4 +311,3 @@ for product in list_of_products:
 df_productdetails = pd.DataFrame(final_result)
 df_productdetails.replace('', None, inplace=True)
 save_to_file(df_productdetails, 'product_details', file_format='xlsx')
-
