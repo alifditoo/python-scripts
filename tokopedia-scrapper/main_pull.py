@@ -74,12 +74,10 @@ def get_page_source(website_link):
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "div#zeus-root")))
         time.sleep(1)
         
-        # Cek apakah ada elemen dengan class css-dfpqc0
         try:
             popup_element = WebDriverWait(driver, 3).until(
                 EC.presence_of_element_located((By.CSS_SELECTOR, ".css-dfpqc0"))
             )
-            # Jika ada, cari dan klik tombol dengan class css-11hzwo5
             if popup_element:
                 close_button = WebDriverWait(driver, 3).until(
                     EC.element_to_be_clickable((By.CSS_SELECTOR, ".css-11hzwo5"))
@@ -87,7 +85,7 @@ def get_page_source(website_link):
                 close_button.click()
                 time.sleep(0.5)
         except:
-            pass  # Jika tidak ada popup, lanjutkan proses
+            pass
         
         page_source = driver.page_source
         soup = BeautifulSoup(page_source, 'html.parser')
